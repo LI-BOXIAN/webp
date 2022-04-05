@@ -14,7 +14,7 @@ function getRandomChar() {
 function produce(){
  var x=getRandomChar(); 
  var plus=document.getElementById("AAA").innerText
-document.getElementById("AAA").innerHTML = insertStr(plus,6,x);
+document.getElementById("AAA").innerHTML = insertStr(plus,0,x);
 }
 function disappear(e) {
   var keyCode = (window.event) ? e.which : e.keyCode;

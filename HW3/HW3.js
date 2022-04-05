@@ -35,4 +35,4 @@ var today = new Date().getTime();
     }
 }
 lastInputTime=today;
-}/*每秒2.5個字*/
+}/*2.5word/sec*/

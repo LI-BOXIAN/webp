@@ -1,9 +1,43 @@
 <html>
+
 <head>
- <title>B0929051</title>
+    <style>
+        img {
+            position: absolute;
+            left: 10px;
+            top: 20px;
+        }
+    </style>
+    <title>my document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
- <p id="AAA"></p>
+    <div id="a1"></div>
+    <script type="text/javascript">
+        var t1;
+        $(document).ready(function () {
+            t1 = setInterval(function () {
+                var str = Math.floor((Math.random() * (26)) + 65);
+                $("#a1").prepend('<img src="image/' + String.fromCharCode(str + 64) + '.jpg" id="' + str + '" class="r1" /> ');
+                $("#" + str).animate({
+                    left: '1500px'
+                }, 1000);
+                setInterval(function () {
+                    if ($(".r1").last().offset().left > 1450) {
+                        $("img").stop(true);
+                        clearInterval(t1);
+                        alert("GAME OVER !");
+                    }
+                    }, 1);
+            }, 1000);
+        })
+        $(document).keydown(function (e) {
+            if ($(".r1").last().attr("id") == (e.keyCode - 64)) {
+                $(".r1").last().remove();
+            }
+        });
+    </script>
 </body>
-</head>
+
 </html>

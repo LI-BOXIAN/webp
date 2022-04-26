@@ -32,7 +32,7 @@ price.done(function(fare){
         var start = $("#Start").val();
         var end = $("#End").val();
         if(start == end){
-            $("#value").html("請選擇不同的捷運站！！");
+            $("#value").html("朋友~請選擇不同的捷運站！！");
         }
         else{
             for(var i=0; i<420 ; i++){

@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+  <input >
+  <p id="question"></p>
+  <p id="out_text1"></p>
+  <p id="out_text2"></p>
+  <script> 
+    var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    var question = document.getElementById("question")
+    // var in_text = document.getElementById("in_text")
+    var add;
+    var first;
+
+    for(let i=0;i<10000;i++) {
+        document.addEventListener('keydown', logKey);
+        setTimeout(newq,400*i);   
+    }
+    function newq(n){
+        var random = Math.round(Math.random() * 25);
+        add=str[random];
+        var q=question.innerHTML;
+        if(n==1) {
+            q=q.substr(0,q.length-1);
+            q=add+q;
+            question.innerHTML = q;
+        }
+        else if(n==2) {
+            first=q.slice(-1);
+            // out_text1.innerHTML=first;
+            return first;
+        }
+        else {
+            q=add+question.innerHTML;
+            question.innerHTML = q;
+        }   
+    }
+
+    document.addEventListener('keydown', logKey);
+    function logKey(string) {
+        if(string.key!=newq(2)) 
+            newq(0);
+        else
+            newq(1);
+    }
+  </script> 
+</body> 
+</html> 

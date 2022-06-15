@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+        div {
+            border: solid;
+            color: rgb(3, 91, 167);
+            height: 60px;
+            margin: 2px;
+            width: 1510px;
+        }
+        img {
+            height:60px;
+            width: 55px;
+            position:absolute;
+        }
+        </style>
+    </head>
+
+    <body style="width:100%; overflow:hidden;">
+    <div id="r0"></div>
+    <div id="r1"></div>
+    <div id="r2"></div>
+    <div id="r3"></div>
+    <div id="r4"></div>
+    <div id="r5"></div>
+    <script>
+		var initime = null;
+        var mystring = [];
+        var t1,t2;
+        $(document).ready(function () {
+            for (let i = 0; i < 6; i++) {
+                mystring[i] = "";
+            }
+            t1=setInterval(createimg, 666);
+            t2=setInterval(animate, 1);
+            setInterval(stop(),1);
+        });
+        $(document).keydown(function (e) {
+            for (var i = 0; i < 6; i++) {
+                if (e.key == mystring[i].slice(-1)) {
+                    $(".prow" + i).last().remove();
+                    mystring[i] = mystring[i].slice(0, -1);
+                    break;
+                }
+            }
+        });
+        function createimg() {
+            var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var num = '012345'
+            var x=num[Math.round(Math.random()*5)];
+            var random = Math.round(Math.random() * 25);
+            mystring[x] = str[random] + mystring[x];
+            $("#r" + x).prepend('<img class="prow' + x + ' "src ="img/' + str[random] + '.png" />');
+            
+        }
+        function animate() {
+            for(var i = 0; i < 6; i++) {
+                $(".prow"+i).animate({ left: "1700PX" }, 10000+1000*i);
+            }
+            setInterval(stop(),1);
+        }
+        function stop() {
+            for(let x = 0; x < 6; x++) {
+                if($(".prow"+x).last().offset().left > 1465) {
+                    $("img").stop(true);
+                    clearInterval(t1);
+                    clearInterval(t2);
+                    alert("GAME OVER !");
+                }
+            }
+        }
+    </script>
+    </body>
+</html>
